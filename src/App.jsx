@@ -21,24 +21,27 @@ function HeroScene(){
  const ref=useRef(null);
  useEffect(()=>{
   const host=ref.current;if(!host)return;
+  let renderer, geo, mat, raf;
+  try {
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(42,host.clientWidth/host.clientHeight,.1,100);
   camera.position.z=7;
-  const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(host.clientWidth,host.clientHeight);host.appendChild(renderer.domElement);
+  renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(host.clientWidth,host.clientHeight);host.appendChild(renderer.domElement);
   const group=new THREE.Group();scene.add(group);
   const points=[];for(let i=0;i<360;i++){const a=Math.random()*Math.PI*2,r=2.2+Math.random()*1.8;points.push(new THREE.Vector3(Math.cos(a)*r,(Math.random()-.5)*2.8,Math.sin(a)*r))}
-  const geo=new THREE.BufferGeometry().setFromPoints(points),mat=new THREE.PointsMaterial({color:0x1cc8d9,size:.025,transparent:true,opacity:.7});
+  geo=new THREE.BufferGeometry().setFromPoints(points);mat=new THREE.PointsMaterial({color:0x1cc8d9,size:.025,transparent:true,opacity:.7});
   group.add(new THREE.Points(geo,mat));
   const ring=new THREE.Mesh(new THREE.TorusKnotGeometry(1.55,.025,220,12),new THREE.MeshBasicMaterial({color:0x151515,wireframe:true,transparent:true,opacity:.32}));group.add(ring);
-  let raf;const tick=()=>{group.rotation.y+=.0018;group.rotation.x+=.0006;renderer.render(scene,camera);raf=requestAnimationFrame(tick)};tick();
+  const tick=()=>{group.rotation.y+=.0018;group.rotation.x+=.0006;renderer.render(scene,camera);raf=requestAnimationFrame(tick)};tick();
   const resize=()=>{camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight)};window.addEventListener("resize",resize);
-  return()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",resize);renderer.dispose();geo.dispose();mat.dispose();host.removeChild(renderer.domElement)};
+  return()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",resize);renderer?.dispose();geo?.dispose();mat?.dispose();if(renderer?.domElement?.parentNode===host)host.removeChild(renderer.domElement)};
+  } catch(e) { host.classList.add("scene-failed"); console.warn("3D scene disabled:",e); }
  },[]);
  return <div ref={ref} className="hero-scene" aria-hidden="true"/>;
 }
 
 function SignalField(){
  const ref=useRef(null);
- useEffect(()=>{let effect;if(ref.current)effect=NET({el:ref.current,THREE,color:0x101010,color2:0x1ec7d8,backgroundColor:0xf2f0eb,points:9,maxDistance:20,spacing:18,showDots:true,mouseControls:true,touchControls:true});return()=>effect?.destroy()},[]);
+ useEffect(()=>{let effect;try{if(ref.current)effect=NET({el:ref.current,THREE,color:0x101010,color2:0x1ec7d8,backgroundColor:0xf2f0eb,points:9,maxDistance:20,spacing:18,showDots:true,mouseControls:true,touchControls:true})}catch(e){ref.current?.classList.add("scene-failed");console.warn("Vanta disabled:",e)}return()=>effect?.destroy()},[]);
  return <div ref={ref} className="signal-field"/>;
 }
 
