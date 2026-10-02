@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Tokens — one source of truth for colour, type, rhythm and motion.
+   ========================================================================== */
+
+:root {
+  /* --- palette ---------------------------------------------------------- */
+  --ink: #07080a;
+  --ink-2: #0d1014;
+  --ink-3: #14181e;
+  --ink-line: rgba(255, 255, 255, 0.14);
+  --ink-line-soft: rgba(255, 255, 255, 0.07);
+
+  --paper: #f2f3ef;
+  --paper-2: #e6e8e3;
+  --paper-line: rgba(7, 8, 10, 0.16);
+
+  --text-paper: #12151a;
+  --text-paper-muted: #545c64;
+  --text-ink: #f3f4f1;
+  --text-ink-muted: #9ba3ac;
+
+  --signal: #4d9bff;
+  --signal-deep: #1a63bd;
+  --signal-soft: #9bcaff;
+  --acid: #cdf564;
+  --warn: #f2b661;
+
+  /* --- typography ------------------------------------------------------- */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-display: clamp(3.4rem, 9.3vw, 9.6rem);
+  --fs-h2: clamp(2.7rem, 7vw, 6.6rem);
+  --fs-h3: clamp(2.2rem, 6vw, 5.6rem);
+  --fs-h4: clamp(1.05rem, 1.45vw, 1.4rem);
+  --fs-lead: clamp(1.05rem, 1.32vw, 1.32rem);
+  --fs-body: clamp(0.98rem, 1.05vw, 1.06rem);
+  --fs-small: 0.9rem;
+  --fs-mono: 0.6875rem;
+  --fs-mono-sm: 0.625rem;
+
+  --track-display: -0.052em;
+  --track-heading: -0.038em;
+  --track-mono: 0.16em;
+
+  /* --- layout ----------------------------------------------------------- */
+  --nav-h: 74px;
+  --gutter: clamp(20px, 4.2vw, 76px);
+  --section-y: clamp(84px, 9.5vw, 176px);
+  --max: 1560px;
+
+  /* --- motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.28s;
+  --dur: 0.5s;
+  --dur-slow: 0.9s;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --nav-h: 64px;
+    --gutter: clamp(18px, 5.4vw, 34px);
+  }
+}
