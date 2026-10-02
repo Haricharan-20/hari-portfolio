@@ -365,8 +365,6 @@ code {
     scroll-behavior: auto !important;
   }
 
-  .hero__field,
-  .hero__motion,
   .contact__scan,
   .marquee__track {
     display: none !important;

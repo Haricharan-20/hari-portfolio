@@ -1,8 +1,8 @@
 # hari-portfolio
 
 Personal portfolio — security engineering, systems work and practical tooling.
-Single-page React application built with Vite, animated with GSAP + Lenis, with a
-deliberately minimal WebGL field behind the hero.
+Single-page React application built with Vite, animated with GSAP + Lenis, with the
+supplied motion asset composited as a full-viewport cinematic hero.
 
 Live case studies: **LEAF** (Python research runtime) and **MiniBurp** (on-device
 Android HTTP interception).
@@ -40,7 +40,7 @@ src/
   components/
     Nav.jsx                fixed bar, scroll progress, accessible mobile panel
     Hero.jsx               entrance choreography, deferred media
-    HeroField.jsx          three.js field, lazily imported, pauses off-screen
+    HeroField.jsx          retained lightweight WebGL field for future scenes
     Approach.jsx  Method.jsx  Focus.jsx
     Work.jsx               work section shell + project index rail
     work/ProjectChapter.jsx  case-study layout shared by both projects
@@ -78,9 +78,11 @@ These are load-bearing; please keep them when editing:
 ## Motion and accessibility
 
 - `prefers-reduced-motion: reduce` disables Lenis smooth scrolling, GSAP scroll
-  choreography, the WebGL field and the hero clip. Content is presented at rest.
-- The WebGL frame loop stops when the hero leaves the viewport or the tab is hidden.
-- All imagery is lazy except the hero; every scroll animation is scoped with
+  choreography and pointer signal motion. The supplied hero video remains visible,
+  but playback is paused and the state label changes to `REST`.
+- The full-viewport hero video begins immediately where autoplay is allowed; its
+  scroll transform and pointer-responsive signal layer are scoped and disposable.
+- Every scroll animation is scoped with
   `gsap.context()` and reverted on unmount.
 
 ## Deployment

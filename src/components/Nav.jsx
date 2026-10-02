@@ -6,6 +6,7 @@ import { useReducedMotion } from '../hooks/useMediaQuery';
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [condensed, setCondensed] = useState(false);
+  const [heroActive, setHeroActive] = useState(true);
   const barRef = useRef(null);
   const panelRef = useRef(null);
   const toggleRef = useRef(null);
@@ -26,6 +27,9 @@ export default function Nav() {
     }
 
     const fill = bar.querySelector('.nav__progress-fill');
+    const onScroll = () => setHeroActive(window.scrollY < window.innerHeight * 0.7);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
     const trigger = ScrollTrigger.create({
       start: 40,
       end: 'max',
@@ -35,7 +39,10 @@ export default function Nav() {
       onToggle: (self) => setCondensed(self.isActive),
     });
 
-    return () => trigger.kill();
+    return () => {
+      trigger.kill();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, [reduced]);
 
   // Compact panel: escape to close, scroll lock, focus handoff.
@@ -63,7 +70,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className={'nav' + (condensed ? ' is-condensed' : '')} ref={barRef}>
+      <header className={'nav' + (condensed ? ' is-condensed' : '') + (heroActive ? ' is-hero' : '')} ref={barRef}>
         <div className="nav__progress" aria-hidden="true">
           <span className="nav__progress-fill" />
         </div>

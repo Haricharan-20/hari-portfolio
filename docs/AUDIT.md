@@ -42,7 +42,8 @@ No claim in the rebuilt site is drawn from anything other than those sources.
 
 ### P1 problems
 
-8. 2.29 MB MP4 hero video with audio, autoplaying on every viewport including phones.
+8. The supplied motion asset was treated as a secondary right-column clip rather
+   than the hero environment required by the creative brief.
 9. Every character split into its own `<span>` with no `aria-hidden` — screen readers
    could read headings letter by letter.
 10. No skip link, no visible `:focus-visible` styling, nav panel/`aria-expanded`
@@ -130,6 +131,10 @@ No claim in the rebuilt site is drawn from anything other than those sources.
   technical mono) applied to a defined hierarchy.
 - Hero: masked line-entrance, outlined second line, technical HUD, deferred WebGL field,
   3D loop paused when off-screen or when the tab is hidden.
+- Second pass: the supplied 8-second `portfolio-motion.mp4` is now the full-viewport
+  hero environment on desktop and mobile. Title, navigation, HUD and signal paths sit
+  over the footage; pointer movement drives a decaying blueprint trace and scroll
+  progress zooms the scene into the rest of the page.
 - Work: a sticky project index rail with scroll-spy, then one chapter per project —
   problem, approach, stack, capabilities, current state, repository, and a
   scroll-scrubbed scene that gives each project its own visual language:
@@ -198,12 +203,22 @@ Automated checks (Playwright, headless Chromium):
    `https://github.com/Haricharan-20/MiniBurp` in `src/data/projects.js`.
 2. **LEAF has no README in its repository.** The case study describes what the code does,
    but the project itself would benefit from a written readme.
-3. The hero uses a short grayscale clip (467 kB). It is desktop-only, deferred, and
-   replaced by a poster image for reduced-motion visitors, but it remains the largest
-   single asset on the site.
+3. The full-viewport hero uses the supplied 8-second grayscale clip (approximately
+   467 kB). It is loaded immediately, responsive-cropped and still visible for
+   reduced-motion visitors; reduced motion pauses playback and removes choreography.
 4. Both project scenes are scroll-scrubbed and pinned on desktop. On small screens they
    fall back to sequential reveals; this is deliberate, but it means the scene
    storytelling is not identical across devices.
 5. The site is a single page with no routing. If additional case studies are added,
    they should become real routes rather than another pinned chapter.
 6. No automated test suite or CI workflow exists in the repository yet.
+
+---
+
+## 6. Creative-engineering second pass
+
+The supplied reference brief is translated in [REFERENCE-DESIGN-SYSTEM.md](REFERENCE-DESIGN-SYSTEM.md).
+The implementation deliberately does **not** add Theatre.js, Motion, Rive, Spline or
+PixiJS merely to expand the dependency list. GSAP + ScrollTrigger, Lenis, CSS and the
+existing React/Three stack cover the visible interactions; the hero's signal layer is
+SVG/CSS so it remains crisp, inspectable and inexpensive.
