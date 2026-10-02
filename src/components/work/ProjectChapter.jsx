@@ -1,11 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { projects } from '../../data/projects';
 import { Reveal, RevealLines } from '../ui/Reveal';
-import LeafScene from './LeafScene';
-import MiniBurpScene from './MiniBurpScene';
+
+const LeafVisual = lazy(() => import('./LeafVisual.jsx'));
+const MiniBurpVisual = lazy(() => import('./MiniBurpVisual.jsx'));
 
 const SCENES = {
-  leaf: LeafScene,
-  miniburp: MiniBurpScene,
+  leaf: LeafVisual,
+  miniburp: MiniBurpVisual,
 };
 
 export default function ProjectChapter({ project, position, total }) {
@@ -60,7 +62,9 @@ export default function ProjectChapter({ project, position, total }) {
       </div>
 
       <div className="chapter__scene">
-        <Scene />
+        <Suspense fallback={<div className="viewer viewer--loading" aria-label="Loading interactive project visual"><span>LOADING VISUAL SYSTEM</span></div>}>
+          <Scene />
+        </Suspense>
       </div>
 
       <div className="chapter__body chapter__body--split">

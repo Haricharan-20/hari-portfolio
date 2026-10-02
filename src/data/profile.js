@@ -118,9 +118,9 @@ export const contact = {
 };
 
 export const nav = [
-  { label: 'APPROACH', href: '#approach' },
-  { label: 'METHOD', href: '#method' },
-  { label: 'FOCUS', href: '#focus' },
+  { label: 'HOME', href: '#top' },
+  { label: 'ABOUT', href: '#approach' },
   { label: 'WORK', href: '#work' },
+  { label: 'LAB', href: '#lab' },
   { label: 'CONTACT', href: '#contact' },
 ];

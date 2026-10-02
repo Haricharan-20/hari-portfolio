@@ -7,9 +7,11 @@ import Hero from './components/Hero';
 import Approach from './components/Approach';
 import Method from './components/Method';
 import Focus from './components/Focus';
+import Lab from './components/Lab';
 import Work from './components/Work';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/ui/CustomCursor';
 
 export default function App() {
   const reduced = useReducedMotion();
@@ -32,12 +34,14 @@ export default function App() {
       </a>
 
       <Nav />
+      <CustomCursor />
 
       <main id="main">
         <Hero />
         <Approach />
         <Method />
         <Focus />
+        <Lab />
         <Work />
         <Contact />
       </main>

@@ -243,6 +243,49 @@ body.is-menu-open .nav__progress {
   display: none;
 }
 
+/* --- cursor --------------------------------------------------------------- */
+
+.cursor {
+  position: fixed;
+  left: -12px;
+  top: -12px;
+  z-index: 200;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor__ring,
+.cursor__dot {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor__ring { width: 28px; height: 28px; border: 1px solid #fff; transition: transform 180ms ease, background 180ms ease; }
+.cursor__dot { left: 0; top: 0; width: 4px; height: 4px; background: #fff; }
+.cursor.is-active .cursor__ring { transform: translate(-50%, -50%) scale(1.7); background: rgba(255, 255, 255, 0.12); }
+
+/* --- lab ------------------------------------------------------------------ */
+
+.lab { background: var(--paper); }
+.lab__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr); gap: 22px 7vw; align-items: end; }
+.lab__head .eyebrow { grid-column: 1 / -1; }
+.lab__head h2 { max-width: 12ch; }
+.lab__intro { max-width: 30rem; padding-bottom: 0.5rem; color: var(--text-paper-muted); line-height: 1.72; }
+.lab__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(48px, 7vw, 96px); border-top: 1px solid var(--paper-line); }
+.lab__item { display: grid; gap: 14px; min-height: 220px; padding: 20px 24px 22px 0; border-right: 1px solid var(--paper-line); }
+.lab__item + .lab__item { padding-left: 24px; }
+.lab__item:last-child { border-right: 0; }
+.lab__index, .lab__state { color: var(--text-paper-muted); font: 500 var(--fs-mono-sm) / 1 var(--font-mono); letter-spacing: 0.16em; }
+.lab__item h3 { font-size: 1rem; letter-spacing: 0.04em; }
+.lab__item p { max-width: 24rem; color: var(--text-paper-muted); line-height: 1.6; }
+.lab__state { align-self: end; color: var(--signal-deep); }
+
+@media (max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor { display: none; } }
+
 /* --- hero ---------------------------------------------------------------- */
 
 .hero {
@@ -987,6 +1030,14 @@ body.is-menu-open .nav__progress {
   .approach {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .lab__head,
+  .lab__list { grid-template-columns: minmax(0, 1fr); }
+  .lab__list { gap: 0; }
+  .lab__item,
+  .lab__item + .lab__item { min-height: 0; padding: 20px 0; border-right: 0; border-bottom: 1px solid var(--paper-line); }
+  .lab__item:last-child { border-bottom: 0; }
+  .lab__state { margin-top: 10px; }
 
   .approach__media {
     position: static;

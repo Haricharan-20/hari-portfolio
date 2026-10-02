@@ -77,6 +77,24 @@ improves hierarchy or reflects a real system relationship.
   but the timeline, smooth scroll and signal response are at rest.
 - Every loop and event listener has an off-screen, hidden-tab or reduced-motion exit.
 
+## Implementation responsibility map
+
+- `Interactive3DViewer` owns the shared Three.js renderer, camera, lights, pointer
+  capture, React Spring rotation target/inertia, idle damping, DPR cap, intersection
+  visibility and disposal.
+- `LeafVisual` and `MiniBurpVisual` only provide the project-specific geometry. They
+  do not duplicate renderer or input logic.
+- GSAP + ScrollTrigger own section choreography and the hero's scroll-linked scene
+  transformation. Lenis remains the single smooth-scroll layer.
+- Motion.dev is used only for the Lab item's small spring hover lift. It does not
+  compete with GSAP for page choreography.
+- The custom cursor is desktop-only, hidden for coarse pointers and reduced motion;
+  keyboard and touch controls never depend on it.
+
+The main work section keeps written content short enough to scan. The old truthful
+case-study state lists remain below each interactive visual, while the visual itself
+communicates architecture rather than inventing runtime captures or dashboards.
+
 ## Typography system
 
 - Display grotesk: compressed, heavy, all-caps identity statements.

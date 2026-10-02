@@ -218,7 +218,21 @@ Automated checks (Playwright, headless Chromium):
 ## 6. Creative-engineering second pass
 
 The supplied reference brief is translated in [REFERENCE-DESIGN-SYSTEM.md](REFERENCE-DESIGN-SYSTEM.md).
-The implementation deliberately does **not** add Theatre.js, Motion, Rive, Spline or
-PixiJS merely to expand the dependency list. GSAP + ScrollTrigger, Lenis, CSS and the
-existing React/Three stack cover the visible interactions; the hero's signal layer is
-SVG/CSS so it remains crisp, inspectable and inexpensive.
+The implementation deliberately does **not** add Theatre.js, Rive, Spline or PixiJS
+merely to expand the dependency list. GSAP + ScrollTrigger owns page choreography,
+Lenis owns smooth scrolling, React Spring owns project drag/inertia, and Motion.dev
+is limited to a local Lab-item hover lift. The hero's signal layer remains SVG/CSS so
+it stays crisp, inspectable and inexpensive.
+
+### Master upgrade implementation
+
+- Added a shared `Interactive3DViewer` with Three.js geometry, studio lighting,
+  camera perspective, pointer capture, React Spring rotation targets/inertia, idle
+  damping, mobile simplification, IntersectionObserver visibility, hidden-tab pause,
+  DPR caps and disposal.
+- Added `LeafVisual` and `MiniBurpVisual` configuration wrappers. LEAF uses runtime,
+  service, event and storage geometry; MiniBurpSuite uses device, TUN, native, SOCKS5
+  and inspection geometry. Both are architecture studies, not fabricated captures.
+- Added an optional Lab section and a desktop-only custom cursor. Existing written
+  state and verified/pending distinctions remain below each visual.
+- The project index remains limited to LEAF and MiniBurpSuite.

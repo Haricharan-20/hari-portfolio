@@ -86,7 +86,7 @@ export const projects = [
   {
     id: '02',
     slug: 'miniburp',
-    name: 'MiniBurp',
+    name: 'MiniBurpSuite',
     subtitle: 'On-device Android HTTP interception',
     category: 'Android · Kotlin + native · VPN/TUN',
     thesis: 'Move HTTP inspection onto the device itself, so capturing an app’s traffic does not require tethering it to a laptop.',
