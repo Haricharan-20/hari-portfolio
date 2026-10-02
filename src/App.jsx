@@ -188,8 +188,17 @@ function ProjectStack() {
       <div className="stack-canvas">
         <div className="stack-glow" />
         {PROJECTS.map((p, i) => (
-          <a href="#contact" className={'project-stack-card ' + p.art} key={p.id} ref={(el) => { cards.current[i] = el; }}>
-            <div className="stack-card-art"><div className="art-grid" /><div className="art-core"><span>{p.id}</span><b>{p.title}</b></div></div>
+          <a href={p.title === 'LEAF' ? 'https://github.com/Haricharan-20/LEAF' : '#contact'} target={p.title === 'LEAF' ? '_blank' : undefined} rel={p.title === 'LEAF' ? 'noreferrer' : undefined} className={'project-stack-card ' + p.art} key={p.id} ref={(el) => { cards.current[i] = el; }}>
+            {p.title === 'LEAF' ? (
+              <div className="leaf-project-art">
+                <div className="leaf-visual"><img src="/assets/leaf-architecture.svg" alt="" /></div>
+                <div className="leaf-hud">
+                  <span>LEAF / v1.13</span><b>RESEARCH RUNTIME</b><i>LOCAL / VERIFIED</i>
+                </div>
+                <div className="leaf-metrics"><span><b>55</b> SESSIONS</span><span><b>43</b> EVENTS</span><span><b>SQLite</b> PERSISTENCE</span></div>
+                <div className="leaf-scan" />
+              </div>
+            ) : <div className="stack-card-art"><div className="art-grid" /><div className="art-core"><span>{p.id}</span><b>{p.title}</b></div></div>}
             <div className="stack-card-top"><span>{p.id}</span><span>{p.meta}</span></div>
             <div className="stack-card-bottom"><div><h3>{p.title}</h3><p>{p.copy}</p></div><span className="stack-arrow">↗</span></div>
           </a>
