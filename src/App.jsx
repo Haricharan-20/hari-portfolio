@@ -237,7 +237,7 @@ export default function App() {
           <div className="hero-foot"><span>INDIA</span><span>WEB · NETWORKS · LINUX</span><span>SCROLL ↓</span></div>
         </div>
         <div className="hero-visual">
-          <div className="hero-photo-wrap"><ImageWithFallback src="/assets/hero.jpg" alt="Hari Charan editorial portrait" className="hero-image" /></div>
+          <div className="hero-photo-wrap"><video className="hero-motion" src="/assets/portfolio-motion.mp4" poster="/assets/hero.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" /><ImageWithFallback src="/assets/hero.jpg" alt="Hari Charan editorial portrait" className="hero-image" /></div>
           <ThreeHero />
           <div className="hero-grid" />
           <div className="hero-index"><b>01</b><span>/</span>06</div>
@@ -264,7 +264,7 @@ export default function App() {
       <section id="projects" className="projects-wrap"><ProjectStack /></section>
 
       <section className="contact" id="contact">
-        <div className="contact-visual"><ImageWithFallback src="/assets/editorial.jpg" className="contact-photo" /><div className="contact-overlay" /><LabField /></div>
+        <div className="contact-visual"><ImageWithFallback src="/assets/hero.jpg" className="contact-photo" /><div className="contact-overlay" /><LabField /></div>
         <div className="contact-content"><span className="section-kicker">06 — CONTACT</span><h2>Let’s build<br /><i>something useful.</i></h2><p>Open to conversations around security, tooling, experiments and interesting technical problems.</p><div className="contact-links">
           <a href="https://github.com/Haricharan-20" target="_blank" rel="noreferrer"><span>GITHUB</span><b>Haricharan-20</b><em>↗</em></a>
           <a href="https://instagram.com/hari_charan_20" target="_blank" rel="noreferrer"><span>INSTAGRAM</span><b>hari_charan_20</b><em>↗</em></a>
